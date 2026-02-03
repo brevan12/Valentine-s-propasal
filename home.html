@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Precious(my bae)</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fce4ec; /* Soft pink background */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #d81b60;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 200px; /* Adjust size to match the screenshot */
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #e91e63;
+            color: white;
+            font-weight: bold;
+        }
+
+        #noBtn {
+            background-color: #e0e0e0;
+            color: #333;
+            position: absolute; /* Allows it to move freely */
+            font-weight: bold;
+        }
+
+        .subtext {
+            margin-top: 50px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img id="mainImage" src="hamster.png" alt="Cute Cat">
+
+        <h1 id="question">Hey babe, will you be my Valentine?</h1>
+
+        <div class="buttons">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+
+        <p class="subtext" id="subtext">"No" seems a bit Mean 😈</p>
+    </div>
+
+    <div class="footer">
+        Made with love by Brevan <span class="heart">❤️</span>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainImage = document.getElementById('mainImage');
+        const question = document.getElementById('question');
+        const subtext = document.getElementById('subtext');
+
+        let yesScale = 1;
+
+        // Function to move the "No" button
+        function moveNoButton() {
+            // Get random coordinates within the window
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+
+            // Make the "Yes" button grow
+            yesScale += 0.2;
+            yesBtn.style.transform = `scale(${yesScale})`;
+        }
+
+        // Trigger on mouseover (desktop) and touch (mobile)
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('click', moveNoButton);
+
+        // "Yes" button click
+        yesBtn.addEventListener('click', () => {
+            // 1. Change the image to the Celebration/Space Hamster
+            // Replace this URL with the local file path if you download the image
+            mainImage.src = "happyhamster.png";
+
+            // 2. Change the text
+            question.innerHTML = "YAY! 🥳❤️ I KNEW YOU WOULD SAY YES";
+
+            // 3. Hide buttons and subtext
+            document.querySelector('.buttons').style.display = 'none';
+            subtext.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
